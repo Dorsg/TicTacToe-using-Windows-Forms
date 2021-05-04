@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    public class MenuProgram
+    public class GameMenu
     {
         public const bool k_HumansOption = true;
         public const bool k_ComputerOption = false;
