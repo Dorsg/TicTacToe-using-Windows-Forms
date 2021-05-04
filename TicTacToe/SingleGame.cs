@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    class SingleGame
+    public class SingleGame
     {
         private Board m_game;
         private Player m_PlayerOne;
@@ -23,9 +23,9 @@ namespace TicTacToe
             playGame();
         }
 
-        private void playGame()
+        private void playGame() // should return bool end of game 
         {
-            int count = 5;
+            int count = m_game.Size * m_game.Size;
             m_game.PrintBorad();
 
             while (count > 0 && !m_EndOfGame) //flag 
@@ -34,23 +34,29 @@ namespace TicTacToe
                 {
                     PlayerNextMove(m_PlayerOne, ref m_EndOfGame);
                     //check if lose
+                    //if so update score
                 }
                 else
                 {
                     if (m_TwoPlayerGame == true)
                     {
                         PlayerNextMove(m_PlayerTwo, ref m_EndOfGame);
+                        //check if lose
+                        //if so update score
                     }
                     else
                     {
-                        ComputerNextMove(m_PlayerTwo);
+                        ComputerNextMove(m_PlayerTwo); // not workking as well
+                        //check if lose
+                        //if so update score
                     }
                     // check if lose
                 }
+                // if count == 0  its a tie
+                // else someone won 
 
                 Ex02.ConsoleUtils.Screen.Clear();
-                //score ++
-                m_game.PrintBorad();
+                m_game.PrintBorad(); // move it from here somehow
                 count--;
             }
         }
@@ -73,7 +79,7 @@ namespace TicTacToe
                 }
                 else
                 {
-                    if (!quitFlag)
+                    if (!quitFlag) // get out 
                     {
                         Console.WriteLine("Wrong choose, please try again");
                     }
@@ -123,10 +129,12 @@ namespace TicTacToe
         {
             bool trigger = false;
             int row, col;
+            Random r = new Random();
+            Random c = new Random();
             while (!trigger)
             {
-                row = new Random().Next(0, m_game.Size);
-                col = new Random().Next(0, m_game.Size);
+                row = r.Next(0, m_game.Size);
+                col = c.Next(0, m_game.Size);
                 if (m_game.isSpotAvialable(row, col))
                 {
                     m_game[row, col] = i_Player.Sign;
@@ -134,5 +142,16 @@ namespace TicTacToe
                 }
             }
         }
+
+        public Player Player1
+        {
+            get { return m_PlayerOne; }
+        }
+
+        public Player Player2
+        {
+            get { return m_PlayerTwo; }
+        }
     }
+   
 }

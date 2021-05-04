@@ -42,7 +42,7 @@ namespace TicTacToe
         {
             get { return r_BoardSize; }
         }
-        public  void PrintBorad()
+        public  void PrintBorad() //should be override tostring
         {
             int columCounter, rowsCounter, valuesCounter;
             rowsCounter = columCounter = valuesCounter = 0;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    class Player
+    public class Player
     {
         private int m_WinsCounter;
         private char m_playerSign;

@@ -18,19 +18,22 @@ namespace TicTacToe
 
             if (gameType == k_HumansOption) // flag gaming 
             {
+                // here should be the option to one more game
                 string playerOneName = GetPlayerName();
                 string playerTwoName = GetPlayerName();
 
                 Ex02.ConsoleUtils.Screen.Clear();
-                new SingleGame(playerOneName, playerTwoName, sizeOfBoard, gameType);
+                SingleGame game = new SingleGame(playerOneName, playerTwoName, sizeOfBoard, gameType);
+                Console.WriteLine("Player One Score : " + game.Player1.Name);
+                Console.WriteLine("Player Two Score : " + game.Player2.Name);
             }
-            else
+            else // here should be the option to one more game
             {
                 string playerOneName = GetPlayerName();
-                new SingleGame(playerOneName, "Computer", sizeOfBoard, gameType);
+                SingleGame game = new SingleGame(playerOneName, "Computer", sizeOfBoard, gameType);
+                Console.WriteLine("Player One Score : " + game.Player1.Name);
+                Console.WriteLine("Player Two Score : " + game.Player2.Name);
             }
-          //  Console.WriteLine("Player One Score : " + m_PlayerOne.Score);
-            //Console.WriteLine("Player Two Score : " + m_PlayerTwo.Score);
         }
 
         public static string GetPlayerName()
@@ -54,7 +57,6 @@ namespace TicTacToe
            {
                res = true;
            }
-
            return res;
         }
 
