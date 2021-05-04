@@ -27,10 +27,10 @@ namespace TicTacToe
             else
             {
                 string playerOneName = GetPlayerName();
-
-                // computer option 
+                new SingleGame(playerOneName, "Computer", sizeOfBoard, gameType);
             }
-
+          //  Console.WriteLine("Player One Score : " + m_PlayerOne.Score);
+            //Console.WriteLine("Player Two Score : " + m_PlayerTwo.Score);
         }
 
         public static string GetPlayerName()
@@ -46,9 +46,16 @@ namespace TicTacToe
         }
         public static bool GetGameType()
         {
+            bool res = false;
             Console.WriteLine("please enter type of game: 1 = human | 2 = computer");
             //check valid
-            return bool.Parse(Console.ReadLine());
+           char key1 = char.Parse(Console.ReadLine());
+           if (key1 == '1')
+           {
+               res = true;
+           }
+
+           return res;
         }
 
     }

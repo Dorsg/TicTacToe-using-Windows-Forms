@@ -53,9 +53,6 @@ namespace TicTacToe
                 m_game.PrintBorad();
                 count--;
             }
-
-            Console.WriteLine("Player One Score : " + m_PlayerOne.Score);
-            Console.WriteLine("Player Two Score : " + m_PlayerTwo.Score);
         }
 
         public void PlayerNextMove(Player i_Player, ref bool quitFlag)
