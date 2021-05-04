@@ -40,7 +40,7 @@
     <Compile Include="Gui.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="GameMenu.cs" />
-    <Compile Include="SingleGame.cs" />
+    <Compile Include="Game.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

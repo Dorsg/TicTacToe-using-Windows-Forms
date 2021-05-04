@@ -15,7 +15,7 @@ namespace TicTacToe
 
         private char[,] m_GameBoard;
         private readonly int r_BoardSize; 
-        public  Board(int i_size)
+        public Board(int i_size)
         {
             r_BoardSize = i_size;
             m_GameBoard = new char[i_size, i_size];
@@ -25,6 +25,7 @@ namespace TicTacToe
             foreach (int rowCount in m_GameBoard)
             {
                 m_GameBoard.SetValue(space, rowCount,colCounter);
+
                 if (rowCount % i_size == 0 && rowCount > 0)
                 {
                     colCounter++;
@@ -41,45 +42,6 @@ namespace TicTacToe
         public int Size
         {
             get { return r_BoardSize; }
-        }
-        public  void PrintBorad() //should be override tostring
-        {
-            int columCounter, rowsCounter, valuesCounter;
-            rowsCounter = columCounter = valuesCounter = 0;
-            valuesCounter = 1;
-            for (; rowsCounter <= r_BoardSize; ++rowsCounter)
-            {
-               Console.Write("-");
-                for (columCounter= 0; columCounter <= r_BoardSize; ++columCounter)
-                {
-                    Console.Write("----");
-                }
-
-                Console.WriteLine("");
-                Console.Write("|");
-                for (columCounter = 0; columCounter <= r_BoardSize; columCounter++)
-                {
-                    if (columCounter == 0 && rowsCounter > 0)
-                    {
-                        Console.Write( " "+ valuesCounter +" |");
-                        valuesCounter++;
-                    }
-                    else if (rowsCounter == 0)
-                    {
-                        Console.Write(" " + columCounter + " |");
-                    }
-                    else
-                    {
-                        Console.Write(" " + this[rowsCounter,columCounter] + " |");
-                    }
-                }
-                Console.WriteLine("");
-            }
-            for (rowsCounter = 0; rowsCounter < r_BoardSize; ++rowsCounter)
-            {
-                Console.Write("-----");
-            }
-            Console.WriteLine();
         }
 
         public  bool isSpotAvialable(int i_row, int i_col) // should throw exceptions in setter !!
