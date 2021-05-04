@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    class HumanPlayer
+    class Player
     {
         private int m_WinsCounter;
         private char m_playerSign;
         private string m_Name;
-        public HumanPlayer(string i_Name,char i_Sign)
+        public Player(string i_Name,char i_Sign)
         {
             m_WinsCounter = 0;
             m_playerSign = i_Sign;
@@ -43,11 +43,11 @@ namespace TicTacToe
                 Console.WriteLine(m_Name + "  Please choose your next move (only available spots is allowed)");
                 Console.WriteLine("Row : ");
                 key1 = char.Parse(Console.ReadLine());
-                if (!key1.Equals("q") && !key1.Equals("Q"))
+                if (!key1.Equals('q') && !key1.Equals('Q'))
                 {
                     Console.WriteLine("Col : ");
                     key2 = char.Parse(Console.ReadLine());
-                    if (!key2.Equals("q") && !key2.Equals("Q"))
+                    if (!key2.Equals('q') && !key2.Equals('Q'))
                     {
                         i_Row = int.Parse(key1.ToString());
                         i_Col = int.Parse(key2.ToString());
@@ -55,11 +55,13 @@ namespace TicTacToe
                     }
                     else
                     {
+                        trigger = true;
                         i_QuitFlag = true;
                     }
                 }
                 else
                 {
+                    trigger = true;
                     i_QuitFlag = true;
                 }
             }

@@ -22,7 +22,7 @@ namespace TicTacToe
                 string playerTwoName = GetPlayerName();
 
                 Ex02.ConsoleUtils.Screen.Clear();
-                new TwoPlayerGame(playerOneName, playerTwoName, sizeOfBoard);
+                new SingleGame(playerOneName, playerTwoName, sizeOfBoard);
             }
             else
             {

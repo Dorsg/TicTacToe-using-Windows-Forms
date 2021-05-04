@@ -37,10 +37,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board.cs" />
-    <Compile Include="HumanPlayer.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="MenuProgram.cs" />
-    <Compile Include="OnePlayerGame.cs" />
-    <Compile Include="TwoPlayerGame.cs" />
+    <Compile Include="SingleGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
