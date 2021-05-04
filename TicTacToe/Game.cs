@@ -99,11 +99,11 @@ namespace TicTacToe
                 {
                     if (!quitFlag) // get out 
                     {
-                        Console.WriteLine("Wrong choose, please try again");
+                        Gui.TryAgain();
                     }
                     else
                     {
-                        Console.WriteLine("you have chose to quit ");
+                        Gui.Quit();
                     }
                 }
 
@@ -164,6 +164,48 @@ namespace TicTacToe
                 }
             }
         }
+
+        public bool CheckWinner(Board Board)
+        {
+            bool win = false;
+
+            if (CheckWinnerCols(Board) || CheckWinnerRow(Board) 
+                                       || CheckWinnerDiagDec(Board) || CheckWinnerDiagInc(Board))
+            {
+                win = true;
+            }
+
+            return win;
+
+        }
+        //public bool CheckWinnerCols(Board Board)
+        //{
+            
+        //    for (int i = 0; i < Board.Size; i++)
+        //    {
+        //        foreach (var VARIABLE in COLLECTION)
+        //        {
+                
+        //        }
+
+        //    }
+
+        //}
+        //public bool CheckWinnerRow(Board Board)
+        //{
+
+
+        //}
+        //public bool CheckWinnerDiagDec(Board Board)
+        //{
+
+
+        //}
+        //public bool CheckWinnerDiagInc(Board Board)
+        //{
+
+
+        //}
 
         public bool IsOn()
         {
