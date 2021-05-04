@@ -87,6 +87,14 @@ namespace TicTacToe
             Console.WriteLine(i_PlayerName + "  Please choose your next move or Q if you want to quit");
         }
 
+        public static void TryAgain()
+        {
+            Console.WriteLine("Wrong choose, please try again");
+        }
 
+        public static void Quit()
+        {
+            Console.WriteLine("you have chose to quit ");
+        }
     }
 }
