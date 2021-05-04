@@ -46,7 +46,6 @@ namespace TicTacToe
                 {
                     Console.Write("----");
                 }
-
                 Console.WriteLine("");
                 Console.Write("|");
                 for (columCounter = 0; columCounter <= i_BoardSize; columCounter++)
@@ -65,32 +64,24 @@ namespace TicTacToe
                         Console.Write(" " + board[rowsCounter, columCounter] + " |");
                     }
                 }
-
                 Console.WriteLine("");
             }
-
             for (rowsCounter = 0; rowsCounter < i_BoardSize; ++rowsCounter)
             {
                 Console.Write("-----");
             }
-
             Console.WriteLine();
         }
-
         public static char AskForRow()
         {
             Console.WriteLine("enter row : ");
             return char.Parse(Console.ReadLine());
         }
-
         public static char AskForCol()
         {
             Console.WriteLine("enter col : ");
-
-
             return char.Parse(Console.ReadLine());
         }
-
         public static void NextMoveInst(string i_PlayerName)
         {
             Console.WriteLine(i_PlayerName + "  Please choose your next move or Q if you want to quit");

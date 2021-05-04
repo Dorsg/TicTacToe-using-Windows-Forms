@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime;
 
 namespace TicTacToe
 {
@@ -42,12 +43,9 @@ namespace TicTacToe
             {
                 playerTwoName = "Computer";
             }
-
             m_PlayerOne = new Player(playerOneName, 'X');
             m_PlayerTwo = new Player(playerTwoName, 'O');
         }
-
-
         public void playSingelGame() // should return bool end of game 
         {
             int maxMatches = m_Board.Size * m_Board.Size;
@@ -72,7 +70,6 @@ namespace TicTacToe
                         ComputerNextMove(m_PlayerTwo); 
                     }
                 }
-
                 Gui.PrintBoard(m_Board.Size, m_Board);
                 turnsCounter++;
             }
@@ -149,13 +146,10 @@ namespace TicTacToe
             bool trigger = false;
             int row, col;
 
-            Random r = new Random();
-            Random c = new Random();
-
             while (!trigger)
             {
-                row = r.Next(1, m_Board.Size + 1);
-                col = c.Next(1, m_Board.Size + 1);
+                row = new Random().Next(m_Board.Size+1);
+                col = new Random().Next(m_Board.Size+1);
 
                 if (m_Board.isSpotAvialable(row, col))
                 {
