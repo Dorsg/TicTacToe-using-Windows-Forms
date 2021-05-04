@@ -37,6 +37,11 @@ namespace TicTacToe
             { return m_GameBoard[i_Idx1 - 1, i_Idx2 - 1]; } // throw exception
             set { m_GameBoard.SetValue(value, i_Idx1 - 1, i_Idx2 - 1); }
         }
+
+        public int Size
+        {
+            get { return r_BoardSize; }
+        }
         public  void PrintBorad()
         {
             int columCounter, rowsCounter, valuesCounter;

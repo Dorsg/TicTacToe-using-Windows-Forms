@@ -16,7 +16,7 @@ namespace TicTacToe
             int sizeOfBoard = GetBoardSize();
             int gameType = GetGameType();
 
-            if (gameType == k_HumansOption)
+            if (gameType == k_HumansOption) // flag gaming 
             {
                 string playerOneName = GetPlayerName();
                 string playerTwoName = GetPlayerName();

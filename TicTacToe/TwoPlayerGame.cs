@@ -9,7 +9,7 @@ namespace TicTacToe
     class TwoPlayerGame
     {
         private Board m_game;
-        private HumanPlayer m_PlayerOne; // to add - string name 
+        private HumanPlayer m_PlayerOne;
         private HumanPlayer m_PlayerTwo;
         public TwoPlayerGame(string i_PlayerOneName, string i_PlayerTwoName, int i_BoardSize)
         { 
@@ -25,34 +25,36 @@ namespace TicTacToe
 
             m_game.PrintBorad();
 
-            while (count > 0)
+            while (count > 0) //flag 
             {
                 if (count % 2 == 0)
                 {
-                    getPlayerChoose(m_PlayerOne);
+                    PlayerNextMove(m_PlayerOne);
+                    //check if lose
                 }
                 else
                 {
-                    getPlayerChoose(m_PlayerTwo);
+                    PlayerNextMove(m_PlayerTwo);
+                    // check if lose
                 }
                 Ex02.ConsoleUtils.Screen.Clear();
+                //score ++
                 m_game.PrintBorad();
                 count--;
             }
             Console.WriteLine("Player One Score : "+ m_PlayerOne.Score);
             Console.WriteLine("Player Two Score : " + m_PlayerTwo.Score);
         }
-        public void getPlayerChoose(HumanPlayer i_Player)
+        public void PlayerNextMove(HumanPlayer i_Player)
         {
             bool trigger = false;
             int row, col;
+            row = col = 0;
             while (!trigger)
             {
-                Console.WriteLine(i_Player.Name + "  Please choose your next move (only available spots is allowed)");
-               // int to = int.Parse(Console.ReadKey().ToString());
-                row = int.Parse(Console.ReadLine());
-                col = int.Parse(Console.ReadLine()); // NOT WORKING WITH WHITESPACES
-                if (m_game.isSpotAvialable(row, col))
+                i_Player.getPlayerChoose(ref row, ref col, ref trigger);
+               
+                if (!trigger && m_game.isSpotAvialable(row, col))
                 {
                      // still not working as well 
                      m_game[row, col] = i_Player.Sign; 

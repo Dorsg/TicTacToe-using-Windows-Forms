@@ -7,3 +7,12 @@ C:\Users\aviv barkai\Source\Repos\TicTacToe\TicTacToe\obj\Debug\TicTacToe.exe
 C:\Users\aviv barkai\Source\Repos\TicTacToe\TicTacToe\obj\Debug\TicTacToe.pdb
 C:\Users\aviv barkai\Source\Repos\TicTacToe\TicTacToe\bin\Debug\Ex02.ConsoleUtils.dll
 C:\Users\aviv barkai\Source\Repos\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csproj.CopyComplete
+C:\Users\aviv barkai\Documents\GitHub\TicTacToe\TicTacToe\bin\Debug\TicTacToe.exe.config
+C:\Users\aviv barkai\Documents\GitHub\TicTacToe\TicTacToe\bin\Debug\TicTacToe.exe
+C:\Users\aviv barkai\Documents\GitHub\TicTacToe\TicTacToe\bin\Debug\TicTacToe.pdb
+C:\Users\aviv barkai\Documents\GitHub\TicTacToe\TicTacToe\bin\Debug\Ex02.ConsoleUtils.dll
+C:\Users\aviv barkai\Documents\GitHub\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csprojAssemblyReference.cache
+C:\Users\aviv barkai\Documents\GitHub\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csproj.CoreCompileInputs.cache
+C:\Users\aviv barkai\Documents\GitHub\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csproj.CopyComplete
+C:\Users\aviv barkai\Documents\GitHub\TicTacToe\TicTacToe\obj\Debug\TicTacToe.exe
+C:\Users\aviv barkai\Documents\GitHub\TicTacToe\TicTacToe\obj\Debug\TicTacToe.pdb
