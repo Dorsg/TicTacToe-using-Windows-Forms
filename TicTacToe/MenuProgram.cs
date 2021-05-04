@@ -8,13 +8,13 @@ namespace TicTacToe
 {
     public class MenuProgram
     {
-        public const int k_HumansOption = 1;
-        public const int k_ComputerOption = 0;
+        public const bool k_HumansOption = true;
+        public const bool k_ComputerOption = false;
         public static void Main()
         {
             Console.WriteLine("Welcome to TicTacToe game by Aviv and Dor :");
             int sizeOfBoard = GetBoardSize();
-            int gameType = GetGameType();
+            bool gameType = GetGameType();
 
             if (gameType == k_HumansOption) // flag gaming 
             {
@@ -22,7 +22,7 @@ namespace TicTacToe
                 string playerTwoName = GetPlayerName();
 
                 Ex02.ConsoleUtils.Screen.Clear();
-                new SingleGame(playerOneName, playerTwoName, sizeOfBoard);
+                new SingleGame(playerOneName, playerTwoName, sizeOfBoard, gameType);
             }
             else
             {
@@ -44,11 +44,11 @@ namespace TicTacToe
             Console.WriteLine("please enter the size of board game : ");
             return int.Parse(Console.ReadLine());
         }
-        public static int GetGameType()
+        public static bool GetGameType()
         {
             Console.WriteLine("please enter type of game: 1 = human | 2 = computer");
             //check valid
-            return int.Parse(Console.ReadLine());
+            return bool.Parse(Console.ReadLine());
         }
 
     }
