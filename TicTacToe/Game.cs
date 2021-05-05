@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime;
 
 namespace TicTacToe
 {
@@ -42,7 +43,6 @@ namespace TicTacToe
             {
                 playerTwoName = "Computer";
             }
-
             m_PlayerOne = new Player(playerOneName, 'X');
             m_PlayerTwo = new Player(playerTwoName, 'O');
         }
