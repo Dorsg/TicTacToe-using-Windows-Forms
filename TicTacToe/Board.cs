@@ -19,18 +19,23 @@ namespace TicTacToe
         {
             r_BoardSize = i_size;
             m_GameBoard = new char[i_size, i_size];
-            char space = (char) 32;
-            int colCounter = 0;
 
-            foreach (int rowCount in m_GameBoard)
+            Init();
+        }
+
+        public void Init()
+        {
+            char space = (char)32;
+
+            for (int i = 0; i < r_BoardSize; i++)
             {
-                m_GameBoard.SetValue(space, rowCount,colCounter);
-
-                if (rowCount % i_size == 0 && rowCount > 0)
+                for (int j = 0; j < r_BoardSize; j++)
                 {
-                    colCounter++;
+                    m_GameBoard.SetValue(space, i, j);
                 }
             }
+           
+     
         }
         public char this[int i_Idx1, int i_Idx2] 
         {

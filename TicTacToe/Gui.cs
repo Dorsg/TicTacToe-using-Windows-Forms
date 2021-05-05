@@ -105,5 +105,15 @@ namespace TicTacToe
         {
             Console.WriteLine("you have chose to quit ");
         }
+
+        public static void NewGame(string i_Player1Name, int i_Player1Score, string i_Player2Name, int i_Player2Score)
+        {
+            Console.WriteLine("Last game ended, score is now:\n" 
+                              + i_Player1Name + ": " + i_Player1Score + "\n"
+                              + i_Player2Name + ": "+  i_Player2Score + "\n"
+                              + "press any key to continue");
+            Console.ReadLine();
+
+        }
     }
 }

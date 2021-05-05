@@ -20,9 +20,11 @@ namespace TicTacToe
 
             while (game.IsOn())
             {
-                game.playSingelGame();
+                game.SessionOfGames();
 
             }
+
+            Console.WriteLine("win!!!!!!!!!!!!");
 
         }
 
