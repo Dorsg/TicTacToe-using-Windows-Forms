@@ -51,8 +51,15 @@ namespace TicTacToe
         {
             while (!m_EndSessionOfGames)
             {
-                playSingelGame();
-
+                int rand = RandTheFirstPlayer();
+                if (rand == 1) //random the player who starts
+                {
+                    playSingelGame(m_PlayerOne, m_PlayerTwo);
+                }
+                else
+                {
+                    playSingelGame(m_PlayerTwo, m_PlayerOne);
+                }
                 Gui.NewGame(Player1.Name, Player1.Score, 
                     Player2.Name, Player2.Score);
 
@@ -60,29 +67,36 @@ namespace TicTacToe
             }
 
         }
-        public void playSingelGame() // should return bool end of game 
+        public void playSingelGame(Player i_First, Player i_Second) // should return bool end of game 
         {
             int maxTurns = m_Board.Size * m_Board.Size;
             int turnsCounter = 0;
             bool endOfGame = false;
 
             Gui.PrintBoard(m_Board.Size, m_Board);
-
+            
             while (turnsCounter < maxTurns && !endOfGame && !m_EndSessionOfGames) //flag 
             {
                 if (turnsCounter % 2 == 0)
                 {
-                    PlayMove(m_PlayerOne, ref endOfGame);
-                }
-                else
-                {
-                    if (m_TwoPlayerGame == true)
+                    if (i_First.Name != "Computer")
                     {
-                        PlayMove(m_PlayerTwo, ref endOfGame);
+                        PlayMove(i_First, ref endOfGame);
                     }
                     else
                     {
-                        ComputerNextMove(m_PlayerTwo); 
+                        ComputerNextMove(i_First);
+                    }
+                }
+                else
+                {
+                    if (i_Second.Name != "Computer")
+                    {
+                        PlayMove(i_Second, ref endOfGame);
+                    }
+                    else
+                    {
+                        ComputerNextMove(i_Second); 
                     }
                 }
 
@@ -96,6 +110,10 @@ namespace TicTacToe
             }
         }
 
+        public int RandTheFirstPlayer()
+        {
+            return new Random().Next(1,3);
+        }
         public void PlayMove(Player i_Player, ref bool quitFlag)
         {
             bool inputIsValid = false;
@@ -145,9 +163,13 @@ namespace TicTacToe
 
                     if (!cCol.Equals('q') && !cCol.Equals('Q'))
                     {
-                        i_Row = int.Parse(cRow.ToString());
-                        i_Col = int.Parse(cCol.ToString());
-                        keepAsking = false;
+                        if (char.IsDigit(cRow) && char.IsDigit(cCol))
+                        {
+                            i_Row = int.Parse(cRow.ToString());
+                            i_Col = int.Parse(cCol.ToString());
+                            keepAsking = false;
+                        }
+                        else { Gui.TryAgain();}
                     }
                     else
                     {

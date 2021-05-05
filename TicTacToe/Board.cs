@@ -52,11 +52,11 @@ namespace TicTacToe
         public  bool isSpotAvialable(int i_row, int i_col) // should throw exceptions in setter !!
         {
             bool flag = true;
-            if (i_row - 1 < 0 || i_row - 1 > r_BoardSize) //wrong logic
+            if (i_row - 1 < 0 || i_row - 1 >= r_BoardSize) //wrong logic
             {
                 flag = false;
             }
-            else if (i_col - 1 < 0 || i_col - 1 > r_BoardSize)
+            else if (i_col - 1 < 0 || i_col - 1 >= r_BoardSize)
             {
                 flag = false;
             }

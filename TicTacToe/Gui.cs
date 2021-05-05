@@ -66,9 +66,9 @@ namespace TicTacToe
                 }
                 Console.WriteLine("");
             }
-            for (rowsCounter = 0; rowsCounter < i_BoardSize; ++rowsCounter)
+            for (rowsCounter = 0; rowsCounter <= i_BoardSize; ++rowsCounter)
             {
-                Console.Write("-----");
+                Console.Write("----");
             }
             Console.WriteLine();
         }
@@ -99,9 +99,9 @@ namespace TicTacToe
 
         public static void NewGame(string i_Player1Name, int i_Player1Score, string i_Player2Name, int i_Player2Score)
         {
-            Console.WriteLine("Last game ended, score is now:\n" 
-                              + i_Player1Name + ": " + i_Player1Score + "\n"
-                              + i_Player2Name + ": "+  i_Player2Score + "\n"
+            Console.WriteLine("Last game ended, score is now:" + Environment.NewLine 
+                              + i_Player1Name + ": " + i_Player1Score + Environment.NewLine
+                              + i_Player2Name + ": "+  i_Player2Score + Environment.NewLine 
                               + "press any key to continue");
             Console.ReadLine();
 
