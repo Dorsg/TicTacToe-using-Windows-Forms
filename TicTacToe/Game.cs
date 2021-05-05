@@ -43,8 +43,8 @@ namespace TicTacToe
             {
                 playerTwoName = "Computer";
             }
-            m_PlayerOne = new Player(playerOneName, 'X');
-            m_PlayerTwo = new Player(playerTwoName, 'O');
+            m_PlayerOne = new Player(playerOneName, (char)88);
+            m_PlayerTwo = new Player(playerTwoName, (char)79);
         }
 
         public void SessionOfGames()
@@ -316,15 +316,15 @@ namespace TicTacToe
         {
             bool trigger = false;
             int row, col;
-
+            row = col = 0;
             Random r = new Random();
             Random c = new Random();
-
+         
             while (!trigger)
             {
-                row = r.Next(1, m_Board.Size + 1);
-                col = c.Next(1, m_Board.Size + 1);
-
+                row = r.Next( m_Board.Size + 1);
+                col = c.Next( m_Board.Size + 1);
+                col = c.Next(m_Board.Size + 1);
                 if (m_Board.isSpotAvialable(row, col))
                 {
                     m_Board[row, col] = i_Player.Sign;
