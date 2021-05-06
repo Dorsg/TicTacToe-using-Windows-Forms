@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TicTacToe
 {
@@ -32,7 +28,7 @@ namespace TicTacToe
             return int.Parse(Console.ReadLine());
         }
 
-        public static void PrintBoard(int i_BoardSize, Board board)
+        public static void PrintBoard(int i_BoardSize, Board board)// stringBuilder?
         {
             Ex02.ConsoleUtils.Screen.Clear();
 

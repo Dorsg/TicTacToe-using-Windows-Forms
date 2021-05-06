@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TicTacToe
 {
     public class Player
@@ -18,13 +12,11 @@ namespace TicTacToe
             m_playerSign = i_Sign;
             m_Name = i_Name;
         }
-
         public int Score
         {
             get { return m_WinsCounter; }
             set { m_WinsCounter= value; }
         }
-
         public char Sign 
         {
             get { return m_playerSign; }
@@ -33,6 +25,5 @@ namespace TicTacToe
         {
             get { return m_Name; }
         }
-       
     }
 }

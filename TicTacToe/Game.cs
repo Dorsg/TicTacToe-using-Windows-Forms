@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime;
 
 namespace TicTacToe
 {
@@ -25,13 +20,11 @@ namespace TicTacToe
             {
                 m_TwoPlayerGame = true;
             }
-
             InitPlayers();
         }
 
-        public void InitPlayers()
+        private void InitPlayers()
         {
-
             string playerTwoName;
             string playerOneName = Gui.GetPlayerName();
 
@@ -62,12 +55,10 @@ namespace TicTacToe
                 }
                 Gui.NewGame(Player1.Name, Player1.Score, 
                     Player2.Name, Player2.Score);
-
                 m_Board.Init();
             }
-
         }
-        public void playSingelGame(Player i_First, Player i_Second) // should return bool end of game 
+        private void playSingelGame(Player i_First, Player i_Second) // should return bool end of game 
         {
             int maxTurns = m_Board.Size * m_Board.Size;
             int turnsCounter = 0;
@@ -87,6 +78,11 @@ namespace TicTacToe
                     {
                         ComputerNextMove(i_First);
                     }
+                    if (CheckWinner(i_First))
+                    {
+                        i_Second.Score++;
+                        endOfGame = true;
+                    }
                 }
                 else
                 {
@@ -98,19 +94,17 @@ namespace TicTacToe
                     {
                         ComputerNextMove(i_Second); 
                     }
+                    if (CheckWinner(i_Second))
+                    {
+                        i_First.Score++;
+                        endOfGame = true;
+                    }
                 }
-
-                if (CheckWinner())
-                {
-                    endOfGame = true;
-                }
-
                 Gui.PrintBoard(m_Board.Size, m_Board);
                 turnsCounter++;
             }
         }
-
-        public int RandTheFirstPlayer()
+        private int RandTheFirstPlayer()
         {
             return new Random().Next(1,3);
         }
@@ -127,9 +121,8 @@ namespace TicTacToe
 
                 if (!quitFlag && m_Board.isSpotAvialable(row, col))
                 {
-                    // still not working as well 
                     m_Board[row, col] = i_Player.Sign;
-                    inputIsValid = true; // to add - checking winning conditions
+                    inputIsValid = true; 
                 }
                 else
                 {
@@ -143,10 +136,9 @@ namespace TicTacToe
                         Gui.Quit();
                     }
                 }
-
             }
         }
-        public void getPlayerChoose(Player i_Player, ref int i_Row, ref int i_Col, ref bool i_QuitFlag)
+        private void getPlayerChoose(Player i_Player, ref int i_Row, ref int i_Col, ref bool i_QuitFlag)
         {
             bool keepAsking = true;
             char cRow, cCol;
@@ -184,26 +176,18 @@ namespace TicTacToe
                 }
             }
         }
-        public bool CheckWinner()
+        private bool CheckWinner(Player i_Player)
         {
-            bool win = false;
+            bool lose = false;
 
-            if (CheckWinnerCols(Player1.Sign) || CheckWinnerRow(Player1.Sign) 
-                                                    || CheckWinnerDiagDec(Player1.Sign))// || CheckWinnerDiagInc(Player1.Sign))
+            if (CheckWinnerCols(i_Player.Sign) || CheckWinnerRow(i_Player.Sign) 
+                                               || CheckWinnerDiagDec(i_Player.Sign) || CheckWinnerDiagInc(i_Player.Sign))
             {
-                Player1.Score++;
-                win = true;
+                lose = true;
             }
-            if (CheckWinnerCols(Player2.Sign) || CheckWinnerRow(Player2.Sign)
-                                              || CheckWinnerDiagDec(Player2.Sign))// || CheckWinnerDiagInc(Player2.Sign))
-            {
-                Player2.Score++;
-                win = true;
-            }
-            return win;
-
+            return lose; // its a lose not a win
         }
-        public bool CheckWinnerCols(char sign)
+        private bool CheckWinnerCols(char sign)
         {
             int counter = 0;
             int index = 0;
@@ -229,14 +213,13 @@ namespace TicTacToe
             }
             return res;
         }
-        public bool CheckWinnerRow(char sign)
+        private bool CheckWinnerRow(char sign)
         {
             int counter = 0;
             int index = 0;
             bool res = false;
             for (int i = 1; i <= m_Board.Size; i++)
             {
-
                 for (int j = 1; j <= m_Board.Size; j++)
                 {
                     if (m_Board[j, i] == sign)
@@ -253,59 +236,44 @@ namespace TicTacToe
             }
             return res;
         }
-        public bool CheckWinnerDiagDec(char sign)
+        private bool CheckWinnerDiagDec(char sign)
         {
             int counter = 0;
-            int index = 0;
+            int index = 1;
             bool res = false;
-            for (int i = 1; i <= m_Board.Size; i++)
+            for (; index <= m_Board.Size; ++index)
             {
-                counter = 0;
-
-                for (int j = 1; j <= m_Board.Size; j++)
+                if (m_Board[index, index] == sign)
                 {
-                    if (i == j && m_Board[j, i] == sign)
-                    {
-                        counter++;
-                    }
-                    else
-                    { counter = 0; }
+                    counter++;
                 }
-
-                if (counter == m_Board.Size)
-                {
-                    res = true;
-
-                }
+            }
+            if (counter == m_Board.Size)
+            {
+                res = true;
             }
             return res;
         }
-        //public bool CheckWinnerIncInc(char sign)
-        //{
-        //    int rowC = m_Board.Size;
-        //    int delta = 1; 
-
-        //    for (int i = 1; i <= m_Board.Size; i++)
-        //    {
-
-        //        for (int j = 1; j <= m_Board.Size; j++)
-        //        {
-        //            if (rowC == m_Board.Size - delta                    m_Board[j, i] == sign)
-        //            {
-        //                counter++;
-        //            }
-        //        }
-
-        //        if (counter == m_Board.Size)
-        //        {
-        //            return true;
-        //        }
-        //    }
-
-        //    return false;
-        //} // TODO
-
-        public void ComputerNextMove(Player i_Player)
+        private bool CheckWinnerDiagInc(char sign)
+        {
+            int rowC = 1;
+            int colC = m_Board.Size;
+            int counter  = 0;
+            bool res = false;
+            for (; rowC <= m_Board.Size; rowC++, colC--)
+            {
+                if (m_Board[rowC, colC] == sign)
+                {
+                    counter++;
+                }
+            }
+            if (counter == m_Board.Size)
+            {
+                res = true;
+            }
+            return res;
+        }
+        private void ComputerNextMove(Player i_Player)
         {
             bool trigger = false;
             int row, col;
@@ -326,7 +294,6 @@ namespace TicTacToe
                 }
             }
         }
-
         public bool IsOn()
         {
             return !m_EndSessionOfGames;

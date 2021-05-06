@@ -9,8 +9,7 @@ namespace TicTacToe
 {
     public class Board
     {
-        
-        public  readonly char X = (char)88;
+        public  readonly char X = (char)88; // need to check how the whole project knows them
         public  readonly char O = (char)79;
 
         private char[,] m_GameBoard;
@@ -19,7 +18,6 @@ namespace TicTacToe
         {
             r_BoardSize = i_size;
             m_GameBoard = new char[i_size, i_size];
-
             Init();
         }
 
@@ -34,13 +32,10 @@ namespace TicTacToe
                     m_GameBoard.SetValue(space, i, j);
                 }
             }
-           
-     
         }
         public char this[int i_Idx1, int i_Idx2] 
         {
-            get
-            { return m_GameBoard[i_Idx1 - 1, i_Idx2 - 1]; } // throw exception
+            get { return m_GameBoard[i_Idx1 - 1, i_Idx2 - 1]; } // throw exception
             set { m_GameBoard.SetValue(value, i_Idx1 - 1, i_Idx2 - 1); }
         }
 
