@@ -200,7 +200,6 @@ namespace TicTacToe
                 Player2.Score++;
                 win = true;
             }
-
             return win;
 
         }
@@ -208,36 +207,33 @@ namespace TicTacToe
         {
             int counter = 0;
             int index = 0;
-
+            bool res = false;
             for (int i = 1; i <= m_Board.Size; i++)
             {
                 counter = 0;
 
                 for (int j = 1; j <= m_Board.Size; j++)
                 {
-                    if (m_Board[i,j] == sign)
+                    if (m_Board[i, j] == sign)
                     {
                         counter++;
                     }
-
+                    else
+                    { counter = 0; }
                 }
-
                 if (counter == m_Board.Size)
                 {
-                    return true;
+                    res = true;
 
                 }
             }
-
-            return false;
-
-
+            return res;
         }
         public bool CheckWinnerRow(char sign)
         {
             int counter = 0;
             int index = 0;
-
+            bool res = false;
             for (int i = 1; i <= m_Board.Size; i++)
             {
 
@@ -247,24 +243,21 @@ namespace TicTacToe
                     {
                         counter++;
                     }
-
+                    else
+                    { counter = 0; }
                 }
-
                 if (counter == m_Board.Size)
                 {
-                    return true;
-
+                    res = true;
                 }
             }
-
-            return false;
-
+            return res;
         }
         public bool CheckWinnerDiagDec(char sign)
         {
             int counter = 0;
             int index = 0;
-
+            bool res = false;
             for (int i = 1; i <= m_Board.Size; i++)
             {
                 counter = 0;
@@ -275,17 +268,17 @@ namespace TicTacToe
                     {
                         counter++;
                     }
+                    else
+                    { counter = 0; }
                 }
 
                 if (counter == m_Board.Size)
                 {
-                    return true;
+                    res = true;
 
                 }
             }
-
-            return false;
-
+            return res;
         }
         //public bool CheckWinnerIncInc(char sign)
         //{
@@ -323,7 +316,8 @@ namespace TicTacToe
             while (!trigger)
             {
                 row = r.Next( m_Board.Size + 1);
-                col = c.Next( m_Board.Size + 1);
+                col = c.Next(m_Board.Size + 1);
+                row = r.Next(m_Board.Size + 1);
                 col = c.Next(m_Board.Size + 1);
                 if (m_Board.isSpotAvialable(row, col))
                 {
