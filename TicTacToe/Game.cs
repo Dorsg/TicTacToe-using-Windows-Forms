@@ -40,25 +40,25 @@ namespace TicTacToe
             m_PlayerTwo = new Player(playerTwoName, (char)79);
         }
 
-        public void SessionOfGames()
+        public void SessionOfGames(ref bool r_QuitFlag)
         {
-            while (!m_EndSessionOfGames)
+            while (!m_EndSessionOfGames && !r_QuitFlag)
             {
                 int rand = RandTheFirstPlayer();
                 if (rand == 1) //random the player who starts
                 {
-                    playSingelGame(m_PlayerOne, m_PlayerTwo);
+                    playSingelGame(m_PlayerOne, m_PlayerTwo, ref r_QuitFlag);
                 }
                 else
                 {
-                    playSingelGame(m_PlayerTwo, m_PlayerOne);
+                    playSingelGame(m_PlayerTwo, m_PlayerOne, ref r_QuitFlag);
                 }
                 Gui.NewGame(Player1.Name, Player1.Score, 
                     Player2.Name, Player2.Score);
                 m_Board.Init();
             }
         }
-        private void playSingelGame(Player i_First, Player i_Second) // should return bool end of game 
+        private void playSingelGame(Player i_First, Player i_Second, ref bool r_QuitFlag) // should return bool end of game 
         {
             int maxTurns = m_Board.Size * m_Board.Size;
             int turnsCounter = 0;
@@ -73,6 +73,7 @@ namespace TicTacToe
                     if (i_First.Name != "Computer")
                     {
                         PlayMove(i_First, ref endOfGame);
+                        r_QuitFlag = endOfGame;
                     }
                     else
                     {
@@ -89,6 +90,7 @@ namespace TicTacToe
                     if (i_Second.Name != "Computer")
                     {
                         PlayMove(i_Second, ref endOfGame);
+                        r_QuitFlag = endOfGame;
                     }
                     else
                     {
@@ -181,7 +183,7 @@ namespace TicTacToe
             bool lose = false;
 
             if (CheckWinnerCols(i_Player.Sign) || CheckWinnerRow(i_Player.Sign) 
-                                               || CheckWinnerDiagDec(i_Player.Sign) || CheckWinnerDiagInc(i_Player.Sign))
+                    || CheckWinnerDiagDec(i_Player.Sign) || CheckWinnerDiagInc(i_Player.Sign))
             {
                 lose = true;
             }
@@ -208,7 +210,6 @@ namespace TicTacToe
                 if (counter == m_Board.Size)
                 {
                     res = true;
-
                 }
             }
             return res;

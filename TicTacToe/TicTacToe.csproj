@@ -41,6 +41,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="GameMenu.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
