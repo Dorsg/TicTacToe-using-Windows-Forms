@@ -102,5 +102,18 @@ namespace TicTacToe
             Console.ReadLine();
 
         }
+
+        public static void WinnerDecleration(string i_PlayerName)
+        {
+            Console.WriteLine(i_PlayerName + " is The Winner !! ");
+        }
+        public static void ThankYou()
+        {
+            Console.WriteLine("Thank you for playing ");
+        }
+        public static void Tie()
+        {
+            Console.WriteLine("Its a tie");
+        }
     }
 }

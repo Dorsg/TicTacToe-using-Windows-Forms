@@ -20,20 +20,22 @@ namespace TicTacToe
                 game.SessionOfGames(ref QuitFlag);
             }
 
-            Console.WriteLine("You have chose to quit the game");
+            Gui.Quit();
+
             if (game.Player1.Score > game.Player2.Score)
             {
-                Console.WriteLine(game.Player1.Name + " is The Winner !! ");
+                Gui.WinnerDecleration(game.Player1.Name);
             }
             else if (game.Player1.Score < game.Player2.Score)
             {
-                Console.WriteLine(game.Player2.Name + " is The Winner !! ");
+                Gui.WinnerDecleration(game.Player2.Name);
             }
             else
             {
-                Console.WriteLine("Its a tie");
+                Gui.Tie();
             }
-            Console.WriteLine("Thank you for playing ");
+
+            Gui.ThankYou();
         }
     }
 }

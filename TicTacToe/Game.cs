@@ -117,7 +117,7 @@ namespace TicTacToe
             int row, col;
             row = col = 0;
 
-            while (!inputIsValid)
+            while (!inputIsValid && !m_EndSessionOfGames)
             {
                 getPlayerChoose(i_Player,ref row, ref col, ref quitFlag);
 
@@ -135,7 +135,6 @@ namespace TicTacToe
                     else
                     {
                         m_EndSessionOfGames = true;
-                        Gui.Quit();
                     }
                 }
             }
