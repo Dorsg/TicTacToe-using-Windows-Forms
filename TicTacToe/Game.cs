@@ -40,25 +40,25 @@ namespace TicTacToe
             m_PlayerTwo = new Player(playerTwoName, (char)79);
         }
 
-        public void SessionOfGames(ref bool r_QuitFlag)
+        public void SessionOfGames()
         {
-            while (!m_EndSessionOfGames && !r_QuitFlag)
+            while (!m_EndSessionOfGames)
             {
                 int rand = RandTheFirstPlayer();
                 if (rand == 1) //random the player who starts
                 {
-                    playSingelGame(m_PlayerOne, m_PlayerTwo, ref r_QuitFlag);
+                    playSingelGame(m_PlayerOne, m_PlayerTwo);
                 }
                 else
                 {
-                    playSingelGame(m_PlayerTwo, m_PlayerOne, ref r_QuitFlag);
+                    playSingelGame(m_PlayerTwo, m_PlayerOne);
                 }
                 Gui.NewGame(Player1.Name, Player1.Score, 
                     Player2.Name, Player2.Score);
                 m_Board.Init();
             }
         }
-        private void playSingelGame(Player i_First, Player i_Second, ref bool r_QuitFlag) // should return bool end of game 
+        private void playSingelGame(Player i_First, Player i_Second) // should return bool end of game 
         {
             int maxTurns = m_Board.Size * m_Board.Size;
             int turnsCounter = 0;
@@ -72,8 +72,7 @@ namespace TicTacToe
                 {
                     if (i_First.Name != "Computer")
                     {
-                        PlayMove(i_First, ref endOfGame);
-                        r_QuitFlag = endOfGame;
+                        PlayMove(i_First);
                     }
                     else
                     {
@@ -89,8 +88,7 @@ namespace TicTacToe
                 {
                     if (i_Second.Name != "Computer")
                     {
-                        PlayMove(i_Second, ref endOfGame);
-                        r_QuitFlag = endOfGame;
+                        PlayMove(i_Second);
                     }
                     else
                     {
@@ -110,7 +108,7 @@ namespace TicTacToe
         {
             return new Random().Next(1,3);
         }
-        public void PlayMove(Player i_Player, ref bool quitFlag)
+        public void PlayMove(Player i_Player)
         {
             bool inputIsValid = false;
 
@@ -119,27 +117,20 @@ namespace TicTacToe
 
             while (!inputIsValid && !m_EndSessionOfGames)
             {
-                getPlayerChoose(i_Player,ref row, ref col, ref quitFlag);
+                getPlayerChoose(i_Player,ref row, ref col);
 
-                if (!quitFlag && m_Board.isSpotAvialable(row, col))
+                if (m_Board.isSpotAvialable(row, col))
                 {
                     m_Board[row, col] = i_Player.Sign;
                     inputIsValid = true; 
                 }
                 else
                 {
-                    if (!quitFlag) // get out 
-                    {
-                        Gui.TryAgain();
-                    }
-                    else
-                    {
-                        m_EndSessionOfGames = true;
-                    }
+                    inputIsValid = false;
                 }
             }
         }
-        private void getPlayerChoose(Player i_Player, ref int i_Row, ref int i_Col, ref bool i_QuitFlag)
+        private void getPlayerChoose(Player i_Player, ref int i_Row, ref int i_Col)
         {
             bool keepAsking = true;
             char cRow, cCol;
@@ -167,13 +158,13 @@ namespace TicTacToe
                     else
                     {
                         keepAsking = false;
-                        i_QuitFlag = true;
+                        m_EndSessionOfGames = true;
                     }
                 }
                 else
                 {
                     keepAsking = false;
-                    i_QuitFlag = true;
+                    m_EndSessionOfGames = true;
                 }
             }
         }

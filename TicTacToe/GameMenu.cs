@@ -17,7 +17,7 @@ namespace TicTacToe
 
             while (game.IsOn())
             {
-                game.SessionOfGames(ref QuitFlag);
+                game.SessionOfGames();
             }
 
             Gui.Quit();
