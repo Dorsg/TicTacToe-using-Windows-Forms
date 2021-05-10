@@ -1,7 +1,7 @@
-﻿using System;
-
+﻿
 namespace TicTacToe
 {
+    using System;
     public class Game
     {
         public const int k_TwoPlayerGame = 1;
@@ -11,7 +11,6 @@ namespace TicTacToe
         private Player m_PlayerTwo;
         private bool m_TwoPlayerGame = false;
         private bool m_EndSessionOfGames = false;
-
         public Game(int i_BoardSize, int i_GameType)
         {
             m_Board = new Board(i_BoardSize);
@@ -20,10 +19,18 @@ namespace TicTacToe
             {
                 m_TwoPlayerGame = true;
             }
-            InitPlayers();
+            initPlayers();
+        }
+        public Player Player1
+        {
+            get { return m_PlayerOne; }
+        }
+        public Player Player2
+        {
+            get { return m_PlayerTwo; }
         }
 
-        private void InitPlayers()
+        private void initPlayers()
         {
             string playerTwoName;
             string playerOneName = Gui.GetPlayerName();
@@ -39,25 +46,6 @@ namespace TicTacToe
             m_PlayerOne = new Player(playerOneName, (char)88);
             m_PlayerTwo = new Player(playerTwoName, (char)79);
         }
-
-        public void SessionOfGames()
-        {
-            while (m_EndSessionOfGames == false)
-            {
-                int rand = RandTheFirstPlayer();
-                if (rand == 1) //random the player who starts
-                {
-                    playSingelGame(m_PlayerOne, m_PlayerTwo);
-                }
-                else
-                {
-                    playSingelGame(m_PlayerTwo, m_PlayerOne);
-                }
-                Gui.NewGame(Player1.Name, Player1.Score, 
-                    Player2.Name, Player2.Score);
-                m_Board.Init();
-            }
-        }
         private void playSingelGame(Player i_FirstPlayer, Player i_SecondPlayer) // should return bool end of game 
         {
             int maxTurns = m_Board.Size * m_Board.Size;
@@ -72,13 +60,13 @@ namespace TicTacToe
                 {
                     if (i_FirstPlayer.Name != "Computer")
                     {
-                        PlayMove(i_FirstPlayer);
+                        playMove(i_FirstPlayer);
                     }
                     else
                     {
-                        ComputerNextMove(i_FirstPlayer);
+                        computerNextMove(i_FirstPlayer);
                     }
-                    if (CheckWinner(i_FirstPlayer))
+                    if (checkWinner(i_FirstPlayer))
                     {
                         i_SecondPlayer.Score++;
                         endOfGame = true;
@@ -88,13 +76,13 @@ namespace TicTacToe
                 {
                     if (i_SecondPlayer.Name != "Computer")
                     {
-                        PlayMove(i_SecondPlayer);
+                        playMove(i_SecondPlayer);
                     }
                     else
                     {
-                        ComputerNextMove(i_SecondPlayer); 
+                        computerNextMove(i_SecondPlayer); 
                     }
-                    if (CheckWinner(i_SecondPlayer))
+                    if (checkWinner(i_SecondPlayer))
                     {
                         i_FirstPlayer.Score++;
                         endOfGame = true;
@@ -104,11 +92,11 @@ namespace TicTacToe
                 turnsCounter++;
             }
         }
-        private int RandTheFirstPlayer()
+        private int randTheFirstPlayer()
         {
             return new Random().Next(1,3);
         }
-        public void PlayMove(Player i_Player)
+        private void playMove(Player i_Player)
         {
             bool inputIsValid = false;
 
@@ -164,18 +152,18 @@ namespace TicTacToe
                 }
             }
         }
-        private bool CheckWinner(Player i_Player)
+        private bool checkWinner(Player i_Player)
         {
             bool lose = false;
 
-            if (CheckWinnerCols(i_Player.Sign) || CheckWinnerRow(i_Player.Sign) 
-                    || CheckWinnerDiagDec(i_Player.Sign) || CheckWinnerDiagInc(i_Player.Sign))
+            if (checkWinnerCols(i_Player.Sign) || checkWinnerRow(i_Player.Sign) 
+                    || checkWinnerDiagDec(i_Player.Sign) || checkWinnerDiagInc(i_Player.Sign))
             {
                 lose = true;
             }
             return lose; // its a lose not a win
         }
-        private bool CheckWinnerCols(char sign)
+        private bool checkWinnerCols(char sign)
         {
             int counter = 0;
             bool res = false;
@@ -199,7 +187,7 @@ namespace TicTacToe
             }
             return res;
         }
-        private bool CheckWinnerRow(char sign)
+        private bool checkWinnerRow(char sign)
         {
             int counter = 0;
 
@@ -222,7 +210,7 @@ namespace TicTacToe
             }
             return res;
         }
-        private bool CheckWinnerDiagDec(char sign)
+        private bool checkWinnerDiagDec(char sign)
         {
             int counter = 0;
             int index = 1;
@@ -240,7 +228,7 @@ namespace TicTacToe
             }
             return res;
         }
-        private bool CheckWinnerDiagInc(char sign)
+        private bool checkWinnerDiagInc(char sign)
         {
             int rowC = 1;
             int colC = m_Board.Size;
@@ -259,7 +247,7 @@ namespace TicTacToe
             }
             return res;
         }
-        private void ComputerNextMove(Player i_Player)
+        private void computerNextMove(Player i_Player)
         {
             bool trigger = false;
             int row, col;
@@ -284,15 +272,23 @@ namespace TicTacToe
         {
             return !m_EndSessionOfGames;
         }
-
-        public Player Player1
+        public void SessionOfGames()
         {
-            get { return m_PlayerOne; }
-        }
-
-        public Player Player2
-        {
-            get { return m_PlayerTwo; }
+            while (m_EndSessionOfGames == false)
+            {
+                int rand = randTheFirstPlayer();
+                if (rand == 1) //random the player who starts
+                {
+                    playSingelGame(m_PlayerOne, m_PlayerTwo);
+                }
+                else
+                {
+                    playSingelGame(m_PlayerTwo, m_PlayerOne);
+                }
+                Gui.NewGame(Player1.Name, Player1.Score, 
+                    Player2.Name, Player2.Score);
+                m_Board.Init();
+            }
         }
     }
    
