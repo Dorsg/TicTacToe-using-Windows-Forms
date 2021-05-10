@@ -10,21 +10,20 @@ namespace TicTacToe
         }
         public static string GetPlayerName()
         {
-            Console.WriteLine("please enter your name: ");
+            Console.WriteLine("Please enter your name: ");
             return Console.ReadLine();
         }
         public static int GetBoardSize()
         {
-            Console.WriteLine("please enter the size of board game : ");
+            Console.WriteLine("Please provide the size of board game : ");
             return int.Parse(Console.ReadLine());
         }
         public static int GetGameType()
         {
-            Console.WriteLine("please enter type of game: 1 = human | 2 = computer");
-            //check valid
+            Console.WriteLine("Please enter type of game: 1 = human | 2 = computer");
             return int.Parse(Console.ReadLine());
         }
-        public static void PrintBoard(int i_BoardSize, Board board)// stringBuilder?
+        public static void PrintBoard(int i_BoardSize, Board i_Board)
         {
             Ex02.ConsoleUtils.Screen.Clear();
 
@@ -53,7 +52,7 @@ namespace TicTacToe
                     }
                     else
                     {
-                        Console.Write(" " + board[rowsCounter, columCounter] + " |");
+                        Console.Write(" " + i_Board[rowsCounter, columCounter] + " |");
                     }
                 }
                 Console.WriteLine("");
@@ -66,12 +65,12 @@ namespace TicTacToe
         }
         public static char AskForRow()
         {
-            Console.WriteLine("enter row : ");
+            Console.WriteLine("Enter row : ");
             return char.Parse(Console.ReadLine());
         }
         public static char AskForCol()
         {
-            Console.WriteLine("enter col : ");
+            Console.WriteLine("Enter col : ");
             return char.Parse(Console.ReadLine());
         }
         public static void NextMoveInst(string i_PlayerName)
@@ -84,16 +83,15 @@ namespace TicTacToe
         }
         public static void Quit()
         {
-            Console.WriteLine("you have chose to quit ");
+            Console.WriteLine("You have chose to Quit ");
         }
         public static void NewGame(string i_Player1Name, int i_Player1Score, string i_Player2Name, int i_Player2Score)
         {
             Console.WriteLine("Last game ended, score is now:" + Environment.NewLine 
                               + i_Player1Name + ": " + i_Player1Score + Environment.NewLine
                               + i_Player2Name + ": "+  i_Player2Score + Environment.NewLine 
-                              + "press any key to continue");
+                              + "Press any key to continue");
             Console.ReadLine();
-
         }
         public static void WinnerDecleration(string i_PlayerName)
         {
