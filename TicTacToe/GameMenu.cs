@@ -12,7 +12,6 @@ namespace TicTacToe
             Gui.WelcomMessage();
             int boardSize = Gui.GetBoardSize();
             int gameType = Gui.GetGameType();
-            bool QuitFlag = false;
             Game game = new Game(boardSize, gameType);
 
             while (game.IsOn())

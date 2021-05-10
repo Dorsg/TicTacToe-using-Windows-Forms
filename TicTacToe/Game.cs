@@ -28,7 +28,7 @@ namespace TicTacToe
             string playerTwoName;
             string playerOneName = Gui.GetPlayerName();
 
-            if (m_TwoPlayerGame)
+            if (m_TwoPlayerGame == true)
             {
                 playerTwoName = Gui.GetPlayerName();
             }
@@ -42,7 +42,7 @@ namespace TicTacToe
 
         public void SessionOfGames()
         {
-            while (!m_EndSessionOfGames)
+            while (m_EndSessionOfGames == false)
             {
                 int rand = RandTheFirstPlayer();
                 if (rand == 1) //random the player who starts
@@ -58,7 +58,7 @@ namespace TicTacToe
                 m_Board.Init();
             }
         }
-        private void playSingelGame(Player i_First, Player i_Second) // should return bool end of game 
+        private void playSingelGame(Player i_FirstPlayer, Player i_SecondPlayer) // should return bool end of game 
         {
             int maxTurns = m_Board.Size * m_Board.Size;
             int turnsCounter = 0;
@@ -66,37 +66,37 @@ namespace TicTacToe
 
             Gui.PrintBoard(m_Board.Size, m_Board);
             
-            while (turnsCounter < maxTurns && !endOfGame && !m_EndSessionOfGames) //flag 
+            while (turnsCounter < maxTurns && (endOfGame == false) && (m_EndSessionOfGames == false)) //flag 
             {
                 if (turnsCounter % 2 == 0)
                 {
-                    if (i_First.Name != "Computer")
+                    if (i_FirstPlayer.Name != "Computer")
                     {
-                        PlayMove(i_First);
+                        PlayMove(i_FirstPlayer);
                     }
                     else
                     {
-                        ComputerNextMove(i_First);
+                        ComputerNextMove(i_FirstPlayer);
                     }
-                    if (CheckWinner(i_First))
+                    if (CheckWinner(i_FirstPlayer))
                     {
-                        i_Second.Score++;
+                        i_SecondPlayer.Score++;
                         endOfGame = true;
                     }
                 }
                 else
                 {
-                    if (i_Second.Name != "Computer")
+                    if (i_SecondPlayer.Name != "Computer")
                     {
-                        PlayMove(i_Second);
+                        PlayMove(i_SecondPlayer);
                     }
                     else
                     {
-                        ComputerNextMove(i_Second); 
+                        ComputerNextMove(i_SecondPlayer); 
                     }
-                    if (CheckWinner(i_Second))
+                    if (CheckWinner(i_SecondPlayer))
                     {
-                        i_First.Score++;
+                        i_FirstPlayer.Score++;
                         endOfGame = true;
                     }
                 }
@@ -123,10 +123,6 @@ namespace TicTacToe
                 {
                     m_Board[row, col] = i_Player.Sign;
                     inputIsValid = true; 
-                }
-                else
-                {
-                    inputIsValid = false;
                 }
             }
         }
@@ -182,7 +178,6 @@ namespace TicTacToe
         private bool CheckWinnerCols(char sign)
         {
             int counter = 0;
-            int index = 0;
             bool res = false;
             for (int i = 1; i <= m_Board.Size; i++)
             {
@@ -207,7 +202,7 @@ namespace TicTacToe
         private bool CheckWinnerRow(char sign)
         {
             int counter = 0;
-            int index = 0;
+
             bool res = false;
             for (int i = 1; i <= m_Board.Size; i++)
             {
