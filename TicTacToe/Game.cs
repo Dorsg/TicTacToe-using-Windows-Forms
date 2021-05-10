@@ -287,7 +287,7 @@ namespace TicTacToe
                 }
                 Gui.NewGame(Player1.Name, Player1.Score, 
                     Player2.Name, Player2.Score);
-                m_Board.Init();
+                m_Board.InitBoard();
             }
         }
     }

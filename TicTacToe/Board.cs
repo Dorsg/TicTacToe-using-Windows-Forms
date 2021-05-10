@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TicTacToe
+﻿namespace TicTacToe
 {
     public class Board
     {
@@ -17,10 +10,10 @@ namespace TicTacToe
         public Board(int i_size)
         {
             r_BoardSize = i_size;
-            this.m_GameBoard = new char[i_size, i_size];
-            this.Init();
+            m_GameBoard = new char[i_size, i_size];
+            InitBoard();
         }
-        public void Init()
+        public void InitBoard()
         {
             char space = (char)32;
 
@@ -28,13 +21,13 @@ namespace TicTacToe
             {
                 for (int j = 0; j < r_BoardSize; j++)
                 {
-                    this.m_GameBoard.SetValue(space, i, j);
+                    m_GameBoard.SetValue(space, i, j);
                 }
             }
         }
         public char this[int i_Idx1, int i_Idx2] 
         {
-            get { return this.m_GameBoard[i_Idx1 - 1, i_Idx2 - 1]; }
+            get { return m_GameBoard[i_Idx1 - 1, i_Idx2 - 1]; }
             set { m_GameBoard.SetValue(value, i_Idx1 - 1, i_Idx2 - 1); }
         }
         public int Size

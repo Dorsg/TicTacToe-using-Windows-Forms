@@ -1,12 +1,7 @@
-﻿using System;
-
-namespace TicTacToe
+﻿namespace TicTacToe
 {
     public class GameMenu
     {
-        public const int k_PlayerTwoIsHuman = 1;
-        public const int k_PlayerTwoIsComputer = 2;
-
         public GameMenu()
         {
             Gui.WelcomMessage();
